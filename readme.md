@@ -18,6 +18,7 @@ By utilizing a simple and minimal usage syntax, that requires a flat learning cu
 
 ```
 npm install --global taskorganizer
+
 ```
 
 ## Highlights
@@ -254,6 +255,10 @@ $ organize --erase
 ## Creator
 
 - Mansimar Anand [(@anandman03)](https://github.com/anandman03)
+
+## Older version
+
+The older version of this project can be found [(here)](https://github.com/anandman03/TaskListner)
 
 ## License
 

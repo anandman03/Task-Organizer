@@ -1,5 +1,5 @@
 <h1 align="center">
-  TaskHandler
+  Task-Organizer
 </h1>
 
 <h4 align="center">
@@ -12,7 +12,7 @@
 
 ## Description
 
-By utilizing a simple and minimal usage syntax, that requires a flat learning curve, taskhandler enables you to effectively manage your tasks and notes across multiple boards from within your terminal. All data are written atomically to the storage in order to prevent corruptions, and are never shared with anyone or anything.
+By utilizing a simple and minimal usage syntax, that requires a flat learning curve, task-organizer enables you to effectively organize your tasks and notes across multiple boards from within your terminal. All data are written atomically to the storage in order to prevent corruptions, and are never shared with anyone or anything.
 
 ## Highlights
 
@@ -31,10 +31,10 @@ By utilizing a simple and minimal usage syntax, that requires a flat learning cu
 ## Usage
 
 ```
-$ handle --help
+$ organize --help
 
   Usage
-    $ handle [<options> ...]
+    $ organize [<options> ...]
     Options
         none             Display board view
       --help,     -h     Help log message
@@ -57,32 +57,32 @@ $ handle --help
       --erase,    -e     Clear all the items
 
     Examples
-      $ handle
-      $ handle --help
-      $ handle --version
-      $ handle --task Check commit b:project p:2
-      $ handle --note Complexity of Merge-sort is O(nlogn) b:project
-      $ handle --remove 1
-      $ handle --done 2
-      $ handle --priority 2 p:3
-      $ handle --board c:project n:coding
-      $ handle --edit 2 Some new task description
-      $ handle --move 1 b:college
-      $ handle --find college
-      $ handle --star 3
-      $ handle --copy 1 2 3
-      $ handle --unpin
-      $ handle --timeline
-      $ handle --begin 2
-      $ handle --list pending
-      $ handle --erase
+      $ organize
+      $ organize --help
+      $ organize --version
+      $ organize --task Check commit b:project p:2
+      $ organize --note Complexity of Merge-sort is O(nlogn) b:project
+      $ organize --remove 1
+      $ organize --done 2
+      $ organize --priority 2 p:3
+      $ organize --board c:project n:coding
+      $ organize --edit 2 Some new task description
+      $ organize --move 1 b:college
+      $ organize --find college
+      $ organize --star 3
+      $ organize --copy 1 2 3
+      $ organize --unpin
+      $ organize --timeline
+      $ organize --begin 2
+      $ organize --list pending
+      $ organize --erase
 ```
 
 ## Views
 
 ### Board View
 
-Invoking tasklistner without any options will display all saved items grouped into their respective boards.
+Invoking task-organizer without any options will display all saved items grouped into their respective boards.
 
 <div align="center">
   <img alt="Boards" width="60%" src="media/header-boards.png"/>
@@ -98,15 +98,15 @@ In order to display all items in a timeline view, based on their creation date, 
 
 ## Flight Manual
 
-The following is a minor walkthrough containing a set of examples on how to use tasklistner.
+The following is a minor walkthrough containing a set of examples on how to use task-organizer.
 
 ### Create Task
 
 To create a new task use the `--task`/`-t` option with your task's description following right after. There are two optional arguements `b:<board-name>` and `p:<priority>`. By default board name is `Default` and priority is 3.
 
 ```
-$ handle -t Improve documentation
-$ handle -t Improve documentation b:coding p:2
+$ organize -t Improve documentation
+$ organize -t Improve documentation b:coding p:2
 
 ```
 
@@ -115,8 +115,8 @@ $ handle -t Improve documentation b:coding p:2
 To create a new note use the `--note`/`-n` option with your note's body following right after. There are two optional arguements `b:<board-name>` and `p:<priority>`. By default board name is `Default` and priority is 3.
 
 ```
-$ handle -n Mergesort worse-case O(nlogn)
-$ handle -n Mergesort worse-case O(nlogn) b:college p:2
+$ organize -n Mergesort worse-case O(nlogn)
+$ organize -n Mergesort worse-case O(nlogn) b:college p:2
 ```
 
 ### Remove Item
@@ -124,7 +124,7 @@ $ handle -n Mergesort worse-case O(nlogn) b:college p:2
 To delete an item, use the `--remove`/`-r` options followed by the id of the target items. Duplicate ids are automatically filtered out.
 
 ```
-$ handle -r 2
+$ organize -r 2
 ```
 
 ### Done Task
@@ -132,7 +132,7 @@ $ handle -r 2
 To mark a task as complete/incomplete, use the `--done`/`-d` option followed by the id of the target task. Note that the option will update to its opposite the `complete` status of the given tasks, thus checking a complete task will render it as pending and a pending task as complete. Duplicate ids are automatically filtered out.
 
 ```
-$ handle -d 1
+$ organize -d 1
 ```
 
 ### Set Priority
@@ -144,7 +144,7 @@ To set a priority level for a task while initializing it, include id and the `p:
 - `1` - High priority
 
 ```
-$ handle -p 1 p:3
+$ organize -p 1 p:3
 ```
 
 ### Change Boards
@@ -152,7 +152,7 @@ $ handle -p 1 p:3
 To change the name of the board, use the `--board/-b` option follwed by `c:x`, where x is the board name to be changed and then `n:y`, where y is the new name of the board.
 
 ```
-$ handle -b c:coding n:college
+$ organize -b c:coding n:college
 ```
 
 ### Edit Item
@@ -160,7 +160,7 @@ $ handle -b c:coding n:college
 To change the description of an item, use the `--edit/-e` option follwed by the id of the target task and new description to be assigned.
 
 ```
-$ handle -e 2 New task description
+$ organize -e 2 New task description
 ```
 
 ### Move Item
@@ -168,7 +168,7 @@ $ handle -e 2 New task description
 To move an item to another boards, use the `--move`/`-m` option, followed by the target item id, prefixed by the `b:` symbol, and the name of the destination board. The default board `Default` can be accessed through the `default` keyword.
 
 ```
-$ handle -m 1 myboard reviews
+$ organize -m 1 myboard reviews
 ```
 
 ### Star Item
@@ -176,7 +176,7 @@ $ handle -m 1 myboard reviews
 To mark an item as favorite, use the `--star`/`-s` option followed by the id of the target item. The functionality of this option is the same as the one of the above described `--done` option.
 
 ```
-$ handle -s 1
+$ organize -s 1
 ```
 
 ### Copy Item Description
@@ -184,7 +184,7 @@ $ handle -s 1
 To copy to your system's clipboard the description of one or more items, use the `--copy`/`-y` option followed by the ids of the target items. Note that the option will also include the newline character as a separator to each pair of adjacent copied descriptions, thus resulting in a clear and readable stack of sentences on paste.
 
 ```
-$ handle -c 1 2 3
+$ organize -c 1 2 3
 ```
 
 ### Delete Marked Done Tasks
@@ -192,7 +192,7 @@ $ handle -c 1 2 3
 To delete/clear all complete tasks at once across all boards, use the `--unpin`/`-u` option.
 
 ```
-$ handle --unpin
+$ organize --unpin
 ```
 
 ### Display Timeline
@@ -200,7 +200,7 @@ $ handle --unpin
 In order to display all items in a timeline view, based on their creation date, the `--timeline` option can be used.
 
 ```
-$ handle --timeline
+$ organize --timeline
 ```
 
 ### Begin Task
@@ -208,7 +208,7 @@ $ handle --timeline
 To mark a task as started/paused, use the `--begin`/`-b` option followed by the id of the target task. The functionality of this option is the same as the one of the above described `--check` option.
 
 ```
-$ handle -b 2
+$ organize -b 2
 ```
 
 ### List Items
@@ -216,7 +216,7 @@ $ handle -b 2
 To list a group of items where each item complies with a specific set of attributes, use the `--list`/`-l` option followed by the desired attributes. Board names along with item traits can be considered valid listing attributes. For example to list all pending tasks, the following could be used. The available attributes are `pending/in-process/done/notes`.
 
 ```
-$ handle -l pending
+$ organize -l pending
 ```
 
 ### Find Items
@@ -224,7 +224,7 @@ $ handle -l pending
 To find for task/board, use the `--find`/`-f` option, followed by id of the task or name of the board.
 
 ```
-$ handle -l coding
+$ organize -l coding
 ```
 
 ### Erase Items
@@ -232,7 +232,7 @@ $ handle -l coding
 To remove all the elements and boards use `--erase`.
 
 ```
-$ handle --erase
+$ organize --erase
 ```
 
 ## Related

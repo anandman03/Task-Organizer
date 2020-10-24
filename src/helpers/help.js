@@ -2,7 +2,7 @@
 
 const helpMessage = `
   Usage
-    $ handle [<options> ...]
+    $ organize [<options> ...]
     Options
         none             Display board view
       --help,     -h     Help log message
@@ -25,25 +25,25 @@ const helpMessage = `
       --erase,    -e     Clear all the items
 
     Examples
-      $ handle
-      $ handle --help
-      $ handle --version
-      $ handle --task Check commit b:project p:2
-      $ handle --note Complexity of Merge-sort is O(nlogn) b:project
-      $ handle --remove 1
-      $ handle --done 2
-      $ handle --priority 2 p:3
-      $ handle --board c:project n:coding
-      $ handle --edit 2 Some new task description
-      $ handle --move 1 b:college
-      $ handle --find college
-      $ handle --star 3
-      $ handle --copy 1 2 3
-      $ handle --unpin
-      $ handle --timeline
-      $ handle --begin 2
-      $ handle --list pending
-      $ handle --erase
+      $ organize
+      $ organize --help
+      $ organize --version
+      $ organize --task Check commit b:project p:2
+      $ organize --note Complexity of Merge-sort is O(nlogn) b:project
+      $ organize --remove 1
+      $ organize --done 2
+      $ organize --priority 2 p:3
+      $ organize --board c:project n:coding
+      $ organize --edit 2 Some new task description
+      $ organize --move 1 b:college
+      $ organize --find college
+      $ organize --star 3
+      $ organize --copy 1 2 3
+      $ organize --unpin
+      $ organize --timeline
+      $ organize --begin 2
+      $ organize --list pending
+      $ organize --erase
 `;
 
 module.exports = helpMessage;

@@ -4,7 +4,7 @@
   "description": "A Tasks, boards & notes for the command-line habitat",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anandman03/TaskListner.git"
+    "url": "https://github.com/anandman03/Task-Organizer.git"
   },
   "main": "index.js",
   "bin": {

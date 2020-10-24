@@ -14,6 +14,12 @@
 
 By utilizing a simple and minimal usage syntax, that requires a flat learning curve, task-organizer enables you to effectively organize your tasks and notes across multiple boards from within your terminal. All data are written atomically to the storage in order to prevent corruptions, and are never shared with anyone or anything.
 
+## Install
+
+```
+npm install --global taskorganizer
+```
+
 ## Highlights
 
 - Organize tasks & notes to boards

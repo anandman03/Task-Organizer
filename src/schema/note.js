@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 'use strict';
 
 const Item = require("./item");

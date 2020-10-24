@@ -1,0 +1,48 @@
+{
+  "name": "taskhandler",
+  "version": "0.0.1",
+  "description": "A Tasks, boards & notes for the command-line habitat",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anandman03/TaskHandler.git"
+  },
+  "main": "cli.js",
+  "bin": {
+    "handle": "cli.js"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Mansimar Anand",
+    "email": "anandmansimar@gmail.com"
+  },
+  "keywords": [
+    "task",
+    "board",
+    "note",
+    "todo",
+    "notebook",
+    "command",
+    "line",
+    "console",
+    "cli",
+    "app"
+  ],
+  "files": [
+    "src",
+    "cli.js",
+    "index.js"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "boxen": "^4.2.0",
+    "chalk": "^4.1.0",
+    "clipboardy": "^2.3.0",
+    "meow": "^7.1.1",
+    "signale": "^1.4.0"
+  }
+}

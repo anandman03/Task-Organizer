@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  Tasks, boards & notes for the command-line habitat
+  A Tasks, boards, notes & bookmarks for the command-line habitat
 </h4>
 
 <div align="center">
@@ -62,6 +62,10 @@ $ organize --help
       --begin,    -b     Begin/Pause task
       --list,     -l     List items by attributes
       --erase,    -e     Clear all the items
+      --mark             Add book mark
+      --unmark           Remove book mark
+      --get              Copy bookmark to clipboard
+      --bookmarks        Display all bookmarks
 
     Examples
       $ organize
@@ -83,6 +87,10 @@ $ organize --help
       $ organize --begin 2
       $ organize --list pending
       $ organize --erase
+      $ organize --mark http://abc.com abc
+      $ organize --unmark abc
+      $ organize --get abc
+      $ organize --bookmarks
 ```
 
 ## Views

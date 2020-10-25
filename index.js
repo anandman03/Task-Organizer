@@ -2,6 +2,7 @@
 
 const handler = require("./src/handleEvents");
 const display = require("./src/viewBoard");
+const marker = require("./src/bookmark");
 
 const taskListner = (flags, input) => {
     if(checkMultipleFlags(flags)) {
@@ -54,6 +55,18 @@ const taskListner = (flags, input) => {
     }
     else if(flags.list) {
         display.listItems(input);
+    }
+    else if(flags.mark) {
+        marker.addBookMark(input);
+    }
+    else if(flags.get) {
+        marker.getBookMark(input);
+    }
+    else if(flags.unmark) {
+        marker.removeBookMark(input);
+    }
+    else if(flags.bookmarks) {
+        marker.viewBookMark();
     }
     else {
         display.displayItems();

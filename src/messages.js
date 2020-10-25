@@ -22,6 +22,36 @@ const newLine = () => {
     console.log('\n');
 }
 
+const linkNotFound = () => {
+    signale.error({
+        prefix: '\n', 
+        message: chalk.whiteBright(`No book mark found`), 
+        suffix: '\n'
+    });
+};
+
+const linkAdded = () => {
+    signale.debug({
+        prefix: '\n', 
+        message: chalk.whiteBright(`Book Mark was added`), 
+        suffix: '\n'
+    });
+};
+
+const linkRemoved = () => {
+    signale.debug({
+        prefix: '\n', 
+        message: chalk.whiteBright(`Book Mark was removed`), 
+        suffix: '\n'
+    });
+};
+
+const linkDisplay = (item) => {
+    signale.complete({
+        message: chalk.whiteBright(`${item.name} (${item.link})`)
+    });
+};
+
 const creation = (task) => {
     signale.debug({
         prefix: '\n', 
@@ -205,5 +235,9 @@ module.exports = {
     listUpdation,
     notesUpdation,
     boardNotFound,
-    taskCompleteData
+    taskCompleteData,
+    linkAdded,
+    linkRemoved,
+    linkDisplay,
+    linkNotFound,
 };

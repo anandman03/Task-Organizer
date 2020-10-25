@@ -39,11 +39,19 @@ const validID = (index, list) => {
     }
 };
 
+const emptyBookMark = (item) => {
+    if(parseInt(item.length) < 2) {
+        messages.invalid();
+        process.exit();
+    }
+};
+
 module.exports = { 
     validpriority,
     validString, 
     validInt, 
     emptyObject, 
     emptyContainer, 
-    validID
+    validID,
+    emptyBookMark
 };

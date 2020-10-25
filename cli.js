@@ -77,6 +77,18 @@ const cli = meow(help, {
         },
         erase: {
             type: "boolean"
+        },
+        mark: {
+            type: "boolean"
+        },
+        get: {
+            type: "boolean"
+        },
+        unmark: {
+            type: "boolean"
+        },
+        bookmarks: {
+            type: "boolean"
         }
     }
 });

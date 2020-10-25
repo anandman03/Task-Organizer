@@ -78,7 +78,6 @@ const removeAll = async() => {
     await saveItemInFile([], {}, -1, "UB");
 };
 
-
 const saveItemInFile = async (task, ob, index, type) => {
     fs.writeFile(pathConfig.filePath, JSON.stringify(task), err => {
         if(err) throw err;
@@ -108,6 +107,35 @@ const FileExist = () => {
      return fs.existsSync(pathConfig.filePath);
 };
 
+const addMark = async (marker) => {
+    if(!fs.existsSync(pathConfig.markerPath)) {
+        await saveMarker([marker]);
+    }
+    else {
+        const list = await require(pathConfig.markerPath);
+        list.push(marker);
+        await saveMarker(list, "C");
+    }
+};
+
+const deleteMark = async (index) => {
+    let list = await require(pathConfig.markerPath);
+    list.splice(index, 1);
+    await saveMarker(list, "D");
+};
+
+const saveMarker = async (list, type) => {
+    fs.writeFile(pathConfig.markerPath, JSON.stringify(list), err => {
+        if(err) throw err;
+        if(type == "C") {
+            messages.linkAdded();
+        }
+        if(type == "D") {
+            messages.linkRemoved();
+        }
+    });
+};
+
 module.exports = {
     removeAll, 
     storeItem,
@@ -120,5 +148,7 @@ module.exports = {
     updatePriority,
     updateProgress,
     updateTaskBoard,
-    updateCompleteStatus
+    updateCompleteStatus,
+    addMark,
+    deleteMark
 };

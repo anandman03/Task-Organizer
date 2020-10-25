@@ -6,4 +6,6 @@ const { join } = require("path");
 
 const filePath = join(os.homedir(), './taskListner.json');
 
-module.exports = { filePath };
+const markerPath = join(os.homedir(), './marker.json');
+
+module.exports = { filePath, markerPath };

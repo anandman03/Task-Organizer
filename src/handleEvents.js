@@ -118,6 +118,7 @@ const starItem = async (item) => {
 const copyToClipboard = async (item) => {
     const list = await storage.getTaskList();
     validator.emptyContainer(list);
+    validator.emptyObject(item);
 
     const descriptions = [];
     for(const id of item) {

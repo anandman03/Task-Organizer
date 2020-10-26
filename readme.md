@@ -258,7 +258,7 @@ To create a new bookmark use the `--mark` option with bookmark's link followed b
 $ organize --mark https://www.npmjs.com npm
 ```
 
-## Remove Bookmark
+### Remove Bookmark
 
 To remove a bookmark use the `--unmark` option with bookmark's name.
 
@@ -266,7 +266,7 @@ To remove a bookmark use the `--unmark` option with bookmark's name.
 $ organize --unmark npm
 ```
 
-## Copy Bookmark
+### Copy Bookmark
 
 To copy a bookmark use the `--get` option with bookmark's name.
 
@@ -274,7 +274,7 @@ To copy a bookmark use the `--get` option with bookmark's name.
 $ organize --get npm
 ```
 
-## Display Bookmarks
+### Display Bookmarks
 
 To display all bookmarks use the `--bookmarks` option. All the names along with links will be displayed.
 

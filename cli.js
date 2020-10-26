@@ -4,6 +4,8 @@
 const meow = require("meow");
 const help = require("./src/helpers/help");
 const taskListner = require("./index");
+const updateNotifier = require('update-notifier');
+const pkg = require("./package.json");
 
 const cli = meow(help, {
     flags: {
@@ -92,5 +94,7 @@ const cli = meow(help, {
         }
     }
 });
+
+updateNotifier({pkg}).notify();
 
 taskListner(cli.flags, cli.input);

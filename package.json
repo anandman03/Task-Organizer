@@ -1,6 +1,6 @@
 {
   "name": "taskorganizer",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A Tasks, boards, notes & bookmarks for the command-line habitat",
   "repository": {
     "type": "git",

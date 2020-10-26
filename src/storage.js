@@ -124,6 +124,13 @@ const deleteMark = async (index) => {
     await saveMarker(list, "D");
 };
 
+const getMarkList = async () => {
+    if(fs.existsSync(pathConfig.markerPath)) {
+        return require(pathConfig.markerPath);
+    }
+    return [];
+};
+
 const saveMarker = async (list, type) => {
     fs.writeFile(pathConfig.markerPath, JSON.stringify(list), err => {
         if(err) throw err;
@@ -150,5 +157,6 @@ module.exports = {
     updateTaskBoard,
     updateCompleteStatus,
     addMark,
-    deleteMark
+    deleteMark,
+    getMarkList,
 };

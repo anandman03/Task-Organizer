@@ -1,6 +1,5 @@
 'use strict';
 
-const pathConfig = require("./helpers/pathConfig");
 const bookMark = require("./schema/book");
 const clipboardy = require("clipboardy");
 const validator = require("./validator");
@@ -21,8 +20,8 @@ const addBookMark = async (item) => {
 };
 
 const getBookMark = async (item) => {
-    const list = await require(pathConfig.markerPath);
-    validator.emptyContainer(list);
+    const list = await storage.getMarkList();
+    validator.emptyMarkList(list);
     validator.emptyObject(item);
 
     let Link = '';
@@ -37,8 +36,8 @@ const getBookMark = async (item) => {
 };
 
 const removeBookMark = async (item) => {
-    const list = await require(pathConfig.markerPath);
-    validator.emptyContainer(list);
+    const list = await storage.getMarkList();
+    validator.emptyMarkList(list);
     validator.emptyObject(item);
 
     let Name = item.join(' ');
@@ -56,12 +55,9 @@ const removeBookMark = async (item) => {
     await storage.deleteMark(index);
 };
 
-const viewBookMark = async (item) => {
-    const list = require(pathConfig.markerPath);
-    if(list.length == 0) {
-        messages.linkNotFound();
-        process.exit();
-    }
+const viewBookMark = async () => {
+    const list = await storage.getMarkList();
+    validator.emptyMarkList(list);
     for(const item of list) {
         messages.linkDisplay(item);
     }

@@ -32,6 +32,13 @@ const emptyContainer = (list) => {
     }
 };
 
+const emptyMarkList = (list) => {
+    if(list.length === 0) {
+        messages.linkNotFound();
+        process.exit();
+    }
+};
+
 const validID = (index, list) => {
     if(index > list.length) {
         messages.taskNotFound(index);
@@ -53,5 +60,6 @@ module.exports = {
     emptyObject, 
     emptyContainer, 
     validID,
-    emptyBookMark
+    emptyBookMark,
+    emptyMarkList
 };

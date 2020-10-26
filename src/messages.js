@@ -115,7 +115,7 @@ const boardTitle = (name) => {
 
 const taskEmpty = () => {
     newLine();
-    signale.error(chalk.whiteBright('Type `tl --help` to get started!'));
+    signale.error(chalk.whiteBright('Type `organize --help` to get started!'));
     taskCompleteData(0);
     overView(0, 0, 0, 0);
     newLine();

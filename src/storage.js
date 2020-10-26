@@ -109,7 +109,7 @@ const FileExist = () => {
 
 const addMark = async (marker) => {
     if(!fs.existsSync(pathConfig.markerPath)) {
-        await saveMarker([marker]);
+        await saveMarker([marker], "C");
     }
     else {
         const list = await require(pathConfig.markerPath);

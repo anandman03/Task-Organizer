@@ -58,6 +58,7 @@ const removeBookMark = async (item) => {
 const viewBookMark = async () => {
     const list = await storage.getMarkList();
     validator.emptyMarkList(list);
+    console.log('\n');
     for(const item of list) {
         messages.linkDisplay(item);
     }

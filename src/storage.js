@@ -4,159 +4,147 @@ const fs = require("fs");
 const messages = require("./messages");
 const pathConfig = require("./helpers/pathConfig");
 
-const storeItem = async (task) => {
-    if(!FileExist()) {
-        await saveItemInFile([task], task, -1, "C");
-    }
-    else {
-        const list = await getTaskList();
-        list.push(task);
-        await saveItemInFile(list, task, -1, "C");
-    }
-};
 
-const deleteItem = async (index) => {
-    let list = await getTaskList();
-    list.splice(index, 1);
-    for(let i = index ; i < list.length ; i++) {
-        list[i]._id -= 1;
-    }
-    await saveItemInFile(list, {}, index+1, "D");
-};
+class Storage {
 
-const updateCompleteStatus = async (index) => {
-    let list = await getTaskList();
-    list[index]._isComplete = !list[index]._isComplete;
-    await saveItemInFile(list, {}, index+1, "U");
-};
-
-const updatePriority = async (index, p) => {
-    let list = await getTaskList();
-    list[index]._priority = p;
-    await saveItemInFile(list, {}, index+1, "U");
-};
-
-const updateBoard = async (currName, newName) => {
-    let list = await getTaskList();
-    for(const task of list) {
-        if(task._board === currName) {
-            task._board = newName;
+    storeItem = async (task) => {
+        if(!this.FileExist()) {
+            await this.saveItemInFile([task], task, -1, "C");
+        }
+        else {
+            const list = await this.getTaskList();
+            list.push(task);
+            await this.saveItemInFile(list, task, -1, "C");
         }
     }
-    await saveItemInFile(list, {}, -1, "UB");
-};
-
-const updateTask = async (ID, desc) => {
-    let list = await getTaskList();
-    list[ID]._description = desc;
-    await saveItemInFile(list, {}, ID+1, "U");
-};
-
-const updateTaskBoard = async (ID, boardName) => {
-    let list = await getTaskList();
-    list[ID]._board = boardName;
-    await saveItemInFile(list, {}, ID+1, "U");
-};
-
-const updateStarItem = async (ID) => {
-    let list = await getTaskList();
-    list[ID]._isStarred = !list[ID]._isStarred;
-    await saveItemInFile(list, {}, ID+1, "U");
-};
-
-const updateList = async (list) => {
-    await saveItemInFile(list, {}, -1, "UB");
-};
-
-const updateProgress = async (ID) => {
-    let list = await getTaskList();
-    list[ID]._inProgress = !list[ID]._inProgress;
-    await saveItemInFile(list, {}, ID+1, "U");
-};
-
-const removeAll = async() => {
-    await saveItemInFile([], {}, -1, "UB");
-};
-
-const saveItemInFile = async (task, ob, index, type) => {
-    fs.writeFile(pathConfig.filePath, JSON.stringify(task), err => {
-        if(err) throw err;
-        if(type === "C") {
-            messages.creation(ob);
+    
+    deleteItem = async (index) => {
+        let list = await this.getTaskList();
+        list.splice(index, 1);
+        for(let i = index ; i < list.length ; i++) {
+            list[i]._id -= 1;
         }
-        if(type === "D") {
-            messages.deletion(index);
-        }
-        if(type === "U") {
-            messages.updation(index);
-        }
-        if(type === "UB") {
-            messages.listUpdation();
-        }
-    });
-};
-
-const getTaskList = async () => {
-    if(FileExist()) {
-        return require(pathConfig.filePath);
+        await this.saveItemInFile(list, {}, index+1, "D");
     }
-    return [];
-};
-
-const FileExist = () => {
-     return fs.existsSync(pathConfig.filePath);
-};
-
-const addMark = async (marker) => {
-    if(!fs.existsSync(pathConfig.markerPath)) {
-        await saveMarker([marker], "C");
+    
+    updateCompleteStatus = async (index) => {
+        let list = await this.getTaskList();
+        list[index]._isComplete = !list[index]._isComplete;
+        await this.saveItemInFile(list, {}, index+1, "U");
     }
-    else {
-        const list = await require(pathConfig.markerPath);
-        list.push(marker);
-        await saveMarker(list, "C");
+    
+    updatePriority = async (index, p) => {
+        let list = await this.getTaskList();
+        list[index]._priority = p;
+        await this.saveItemInFile(list, {}, index+1, "U");
     }
-};
-
-const deleteMark = async (index) => {
-    let list = await require(pathConfig.markerPath);
-    list.splice(index, 1);
-    await saveMarker(list, "D");
-};
-
-const getMarkList = async () => {
-    if(fs.existsSync(pathConfig.markerPath)) {
-        return require(pathConfig.markerPath);
-    }
-    return [];
-};
-
-const saveMarker = async (list, type) => {
-    fs.writeFile(pathConfig.markerPath, JSON.stringify(list), err => {
-        if(err) throw err;
-        if(type == "C") {
-            messages.linkAdded();
+    
+    updateBoard = async (currName, newName) => {
+        let list = await this.getTaskList();
+        for(const task of list) {
+            if(task._board === currName) {
+                task._board = newName;
+            }
         }
-        if(type == "D") {
-            messages.linkRemoved();
+        await this.saveItemInFile(list, {}, -1, "UB");
+    }
+    
+    updateTask = async (ID, desc) => {
+        let list = await this.getTaskList();
+        list[ID]._description = desc;
+        await this.saveItemInFile(list, {}, ID+1, "U");
+    }
+    
+    updateTaskBoard = async (ID, boardName) => {
+        let list = await this.getTaskList();
+        list[ID]._board = boardName;
+        await this.saveItemInFile(list, {}, ID+1, "U");
+    }
+    
+    updateStarItem = async (ID) => {
+        let list = await this.getTaskList();
+        list[ID]._isStarred = !list[ID]._isStarred;
+        await this.saveItemInFile(list, {}, ID+1, "U");
+    }
+    
+    updateList = async (list) => {
+        await this.saveItemInFile(list, {}, -1, "UB");
+    }
+    
+    updateProgress = async (ID) => {
+        let list = await this.getTaskList();
+        list[ID]._inProgress = !list[ID]._inProgress;
+        await this.saveItemInFile(list, {}, ID+1, "U");
+    }
+    
+    removeAll = async() => {
+        await this.saveItemInFile([], {}, -1, "UB");
+    }
+    
+    saveItemInFile = async (task, ob, index, type) => {
+        fs.writeFile(pathConfig.filePath, JSON.stringify(task), err => {
+            if(err) throw err;
+            if(type === "C") {
+                messages.creation(ob);
+            }
+            if(type === "D") {
+                messages.deletion(index);
+            }
+            if(type === "U") {
+                messages.updation(index);
+            }
+            if(type === "UB") {
+                messages.listUpdation();
+            }
+        });
+    }
+    
+    getTaskList = async () => {
+        if(this.FileExist()) {
+            return require(pathConfig.filePath);
         }
-    });
+        return [];
+    }
+    
+    FileExist = () => {
+         return fs.existsSync(pathConfig.filePath);
+    }
+    
+    addMark = async (marker) => {
+        if(!fs.existsSync(pathConfig.markerPath)) {
+            await this.saveMarker([marker], "C");
+        }
+        else {
+            const list = await require(pathConfig.markerPath);
+            list.push(marker);
+            await this.saveMarker(list, "C");
+        }
+    }
+    
+    deleteMark = async (index) => {
+        let list = await require(pathConfig.markerPath);
+        list.splice(index, 1);
+        await this.saveMarker(list, "D");
+    }
+    
+    getMarkList = async () => {
+        if(fs.existsSync(pathConfig.markerPath)) {
+            return require(pathConfig.markerPath);
+        }
+        return [];
+    }
+    
+    saveMarker = async (list, type) => {
+        fs.writeFile(pathConfig.markerPath, JSON.stringify(list), err => {
+            if(err) throw err;
+            if(type == "C") {
+                messages.linkAdded();
+            }
+            if(type == "D") {
+                messages.linkRemoved();
+            }
+        });
+    }
 };
 
-module.exports = {
-    removeAll, 
-    storeItem,
-    deleteItem,
-    getTaskList,
-    updateList,
-    updateTask,
-    updateBoard,
-    updateStarItem,
-    updatePriority,
-    updateProgress,
-    updateTaskBoard,
-    updateCompleteStatus,
-    addMark,
-    deleteMark,
-    getMarkList,
-};
+module.exports = new Storage();
